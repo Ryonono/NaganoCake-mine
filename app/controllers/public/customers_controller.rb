@@ -10,18 +10,22 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = current_customer
-    #論理削除の方法(条件分岐で分ける)
-    #このままだと誰も退会できない
-    if @customer.update(is_unsubscribed == true)
-      #ログアウトさせる
-      reset_session
-      flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
-      redirect_to root_path
-    elsif @customer.update(customer_params)
+    if @customer.update(customer_params)
       redirect_to customers_my_page_path
     else
       render :edit
     end
+  end
+
+
+  def unsubscribe
+    @customer = current_customer
+    #論理削除の方法
+    @customer.update(is_unsubscribed: true)
+      #ログアウトさせる
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path
   end
 
 

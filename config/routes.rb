@@ -27,8 +27,8 @@ Rails.application.routes.draw do
 
     get "customers/my_page" => "customers#my_page"
     get "customers/confirm" => "customers#confirm"
-    #patch "customers" => "customers#unsubscribe"
-    #今回は要件と少し変更して、全てをupdateアクションで行うこととした
+    patch "customers/unsubscribe" => "customers#unsubscribe"
+    #今回は要件と少し変更して、全てをupdateアクションで行うこととした→それは無理やった
     resource :customers, only: [:edit, :update]
 
     delete "cart_items/destroy_all" => "cart_items#destroy_all"

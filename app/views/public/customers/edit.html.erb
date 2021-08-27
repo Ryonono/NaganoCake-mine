@@ -1,6 +1,6 @@
 <h2>登録情報編集</h2><br/>
 
-<!--url: edit_customers_pathを書かないと、undefined method `customer_path' と出てしまう（おそらくresourceで設定しているから）-->
+<!--url: edit_customers_pathを書かないと、undefined method `customer_path' と出てしまう（おそらくresourceで設定しているから）→それはcustomerと単数形になっていたからでは？-->
 <%= form_with model:@customer, url: customers_path, method: :patch, local: true do |f| %>
 
 <p>名前</p>
