@@ -1,0 +1,33 @@
+<h2><%= @customer.last_name %> <%= @customer. first_name %>さんの会員詳細</h2><br/>
+
+<div>
+  <p>顧客ID</p>
+  <p>氏名</p>
+  <p>フリガナ</p>
+  <p>郵便番号</p>
+  <p>住所</p>
+  <p>電話番号</p>
+  <p>メールアドレス</p>
+</div>
+
+<br/>
+<div>
+  <p>
+    <%= @customer.id %>
+    <% if @customer.is_unsubscribed == false %>
+      <span>有効会員</span>
+    <% else %>
+      <span>退会済み会員</span>
+    <% end %>
+  </p>
+  <p><%= @customer.last_name %> <%= @customer. first_name %></p>
+  <p><%= @customer.post_number %></p>
+  <p><%= @customer.address %></p>
+  <p><%= @customer.phone_number %></p>
+  <p><%= @customer.email %></p>
+</div>
+
+<div>
+  <%= link_to "編集する", edit_admin_customer_path(@customer) %>
+  <%= link_to "注文履歴一覧を見る", admin_path %>
+</div>

@@ -1,0 +1,32 @@
+<h2>マイページ</h2><br/>
+
+<h3>登録情報</h3>
+<span><%= link_to "編集する", edit_customers_path %></span>
+
+<span><%= link_to "パスワードを変更する", edit_customer_password_path %></span>
+<!--パスワード変更画面にいかない-->
+
+<div>
+  <p>氏名</p>
+  <p>カナ</p>
+  <p>郵便番号</p>
+  <p>住所</p>
+  <p>電話番号</p>
+  <p>メールアドレス</p>
+</div>
+
+<br/>
+<div>
+  <p><%= @customer.last_name %> <%= @customer. first_name %></p>
+  <p><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></p>
+  <p><%= @customer.post_number %></p>
+  <p><%= @customer.address %></p>
+  <p><%= @customer.phone_number %></p>
+  <p><%= @customer.email %></p>
+</div>
+
+<h3>配送先</h3>
+<span><%= link_to "一覧を見る", addresses_path %></span>
+
+<h3>注文履歴</h3>
+<span><%= link_to "一覧を見る", orders_path %></span>

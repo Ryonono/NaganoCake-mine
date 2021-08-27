@@ -1,0 +1,19 @@
+<h2>商品詳細</h2><br/>
+
+<div><%= attachment_image_tag @item, :image, size: "100x100" %></div>
+
+<div>
+  <p><%= @item.name %></p>
+  <p><%= @item.explanation %></p>
+  <p><%= @item.genre.name %></p>
+  <p><%= @item.price %></p>
+  <p>
+    <% if @item.is_released == true %>
+      <span>販売中</span>
+    <% else %>
+      <span>販売停止中</span>
+    <% end %>
+  </p>
+</div>
+
+<div><%= link_to "編集する", edit_admin_item_path(@item) %></div>

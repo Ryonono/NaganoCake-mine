@@ -1,0 +1,47 @@
+<h2>登録情報編集</h2><br/>
+
+<!--url: edit_customers_pathを書かないと、undefined method `customer_path' と出てしまう（おそらくresourceで設定しているから）-->
+<%= form_with model:@customer, url: customers_path, method: :patch, local: true do |f| %>
+
+<p>名前</p>
+<span>
+  <%= f.label :"（姓)" %>
+  <%= f.text_field :last_name %>
+</span>
+<span>
+  <%= f.label :"（名)" %>
+  <%= f.text_field :first_name %>
+</span>
+
+
+<p>フリガナ</p>
+<span>
+  <%= f.label :"（セイ)" %>
+  <%= f.text_field :last_name_kana %>
+</span>
+<span>
+  <%= f.label :"メイ" %>
+  <%= f.text_field :first_name_kana %>
+</span>
+
+
+<p>メールアドレス</p>
+<span><%= f.email_field :email %></span>
+
+
+<p>郵便番号（ハイフンなし）</p>
+<span><%= f.text_field :post_number %></span>
+
+
+<p>住所</p>
+<span><%= f.text_area :address %></span>
+
+
+<p>電話番号（ハイフンなし）</p>
+<span><%= f.text_field :phone_number %></span>
+
+<%= f.submit "編集内容を保存する" %>
+
+<% end %>
+
+<span><%= link_to "退会する", customers_confirm_path %></span>

@@ -1,0 +1,7 @@
+<h2>商品一覧</h2>
+
+<% @items.each do |item| %>
+    <%= attachment_image_tag item, :image, size: "200x200" %>
+    <%= item.name %>
+    ¥<%= item.price %>
+<% end %>

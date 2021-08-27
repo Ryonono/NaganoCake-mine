@@ -1,0 +1,30 @@
+<h2>商品新規登録</h2><br/>
+
+
+<%= form_with model:@item, url: admin_items_path, method: :post, local: true do |f| %>
+
+    <div><%= f.attachment_field :image %></div>
+
+    <div>
+      <%= f.label :商品名 %>
+      <%= f.text_field :name, autocomplete: "商品名" %><br/>
+
+      <%= f.label :商品説明 %>
+      <%= f.text_area :explanation, autocomplete: "商品説明" %><br/>
+
+      <%= f.label :ジャンル %>
+      <%= f.collection_select(:genre_id, @genres, :id, :name) %><br/>
+
+      <!--f.collection_select(:実際に保存させるカラム, 取ってくるテーブル, :保存させるカラム？？, :実際に表示させるカラム)-->
+
+      <%= f.label :税抜価格 %>
+      <%= f.text_field :price, autocomplete: "税抜価格" %><br/>
+
+      <%= f.label :販売ステータス %>
+      <%= f.select :is_released, {'販売中': true, '販売停止中': false}, { include_blank: false, selected: true} %>
+    </div>
+
+
+    <%= f.submit "新規登録" %>
+
+<% end %>

@@ -1,0 +1,14 @@
+<h2>ようこそNaganoCakeへ！！</h2><br>
+<p>長野の自然が生んだ美味しい素材を使用しております！是非ご賞味ください！</p>
+
+<h3>おすすめの商品</h3>
+
+<!--float-ledtは効いていない-->
+<div class="float-left">
+    <% @items.each do |item| %>
+        <span><%= attachment_image_tag item, :image, size: "200x200" %></span>
+        <span><%= item.name %></span>
+        <span><%= item.price %>円</span>
+    <% end %>
+</div>
+
