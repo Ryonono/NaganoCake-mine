@@ -1,21 +1,19 @@
-
-
 <% if @cart_items.exists? %>
-<h2>ショッピングカート</h2>
+ <h2>ショッピングカート</h2>
 
-<span><%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete %></span><br/>
+ <span><%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete %></span><br/>
 
-<table class="table table-stripe">
-    <thead>
-        <tr>
+ <table class="table table-stripe">
+     <thead>
+         <tr>
             <th>商品名</th>
             <th>単価（税込）</th>
             <th>数量</th>
             <th>小計</th>
             <th></th>
-        </tr>
-    </thead>
-    <tbody>
+         </tr>
+     </thead>
+     <tbody>
         <% @cart_items.each do |cart_item| %>
         <tr>
             <td><%= cart_item.item.name %></td>
@@ -30,22 +28,21 @@
             <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete %></td>
         </tr>
         <% end %>
+     </tbody>
+ </table>
 
-    </tbody>
-</table>
+ <div><%= link_to "買い物を続ける", new_order_path %></div>
 
-<div><%= link_to "買い物を続ける", items_path %></div>
-
-<!--合計金額はうまく表示されない状態-->
-<div>合計金額</div>
-<span><%= @total_price %></span>
+ <!--合計金額はうまく表示されない状態-->
+ <div>合計金額</div>
+ <span><%= @total_price %></span>
 
 
-<div><%= link_to "情報入力に進む", items_path %></div>
+ <div><%= link_to "情報入力に進む", items_path %></div>
 
 
 <% else %>
 
-<h2>ショッピングカートの中身は空です</h2>
+ <h2>ショッピングカートの中身は空です</h2>
 
 <% end %>
