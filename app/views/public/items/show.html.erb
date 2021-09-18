@@ -1,0 +1,23 @@
+
+<div><%= attachment_image_tag @item, :image, size: "200x200" %></div>
+<p><%= @item.name %></p>
+<p><%= @item.explanation %></p>
+<p>¥<%= @item.price %>(税込）</p>
+
+<%= form_with model:@cart_item, url: cart_items_path, method: :post, local: true do |f| %>
+
+<!--これをいつも忘れてしまう。hidden_fieldがないと、新規作成したカートに情報としてamountしか入らないことになってしまう-->
+<!--hidden_fieldにf.をつけるのをずっと忘れていたことで作業が三週間止まっていた、、、-->
+<%= f.hidden_field :item_id, value: @item.id %>
+
+<!--valueの記述方法は、 -->
+<!--value: @item.id-->
+<!--:value => @item.id-->
+<!--この二通りある-->
+
+<!--f.selectの書き方・・・-->
+<%#= f.select 属性, 選択肢の集合（文字列が必要な場合は{}を用いたハッシュ、数字だけの場合は[]角カッコでよい）, {オプション}, {HTMLオプション} %>
+<%= f.select :amount, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], {selected: 1} %>
+
+<%= f.submit "カートに入れる" %>
+<% end %>

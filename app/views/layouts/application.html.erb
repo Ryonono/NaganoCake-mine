@@ -20,7 +20,7 @@
           <% if customer_signed_in? %>
             <ol><%= link_to "マイページ", customers_my_page_path %></ol>
             <ol><%= link_to "商品一覧", items_path %></ol>
-            <ol><%#= link_to "カート", %></ol>
+            <ol><%= link_to "カート", cart_items_path %></ol>
             <ol><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></ol>
           <% elsif admin_signed_in? %>
             <ol><%= link_to "商品一覧", admin_items_path %></ol>
