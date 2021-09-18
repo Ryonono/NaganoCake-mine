@@ -1,3 +1,6 @@
+
+
+<% if @cart_items.exists? %>
 <h2>ショッピングカート</h2>
 
 <span><%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete %></span><br/>
@@ -39,3 +42,10 @@
 
 
 <div><%= link_to "情報入力に進む", items_path %></div>
+
+
+<% else %>
+
+<h2>ショッピングカートの中身は空です</h2>
+
+<% end %>
