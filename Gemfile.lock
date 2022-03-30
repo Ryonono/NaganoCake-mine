@@ -73,6 +73,8 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    enum_help (0.0.18)
+      activesupport (>= 3.0.0)
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.3)
@@ -220,6 +222,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise
+  enum_help
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

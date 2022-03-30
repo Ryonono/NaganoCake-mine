@@ -49,7 +49,10 @@ Devise.setup do |config|
   #Bookersではnameに変更していたが、今回はapplication_controllerに記述したのでOK→　× こっちのはログイン使用する
   #調べてみると、こっちは認証（ログイン）に使用するキーだそうで、ここは変更するべきなはず、
   #おそらく何かのミスだったみたい！今emailの状態でログインしようとすると、Unpermitted parameters: :last_name, :first_nameが出てくれた
-  config.authentication_keys = [:last_name, :first_name]
+  #　:last_name, :first_nameにしていたが、その後逆にAdminの方でログインができなくなってしまっていた。
+  #そこで、ここの記述をemailに戻し、application_controllerでconfigure_customerpermitted_parametersを定義するとうまくログインできるようになった！！！
+  ## →結局、今回は基本的にemailを使用することになるので、そのままでよかった。帰るにしてもauthentication_keyは基本的に一つの方が良い。
+  config.authentication_keys = [:email]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -61,12 +64,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [:email]
+  #config.case_insensitive_keys = [:email]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [:email]
+  #config.strip_whitespace_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Public::Customers::SessionsController < Devise::SessionsController
+  #before_action :configure_customer_sign_in_params, only: [:new, :create]
   before_action :reject_user, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
@@ -20,6 +21,11 @@ class Public::Customers::SessionsController < Devise::SessionsController
   # end
 
   protected
+  
+  #Customerで名前ログインをするために色々策を練っていたが、実際はcustomerモデルに追記をするだけだった。
+  # def configure_customer_sign_in_params
+  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:last_name, :first_name])
+  # end
 
   def reject_user
     #入力している情報はlast_name,first_nameなので、emailでは意味がない？　→ その通りだった！！　→　試行錯誤の末、これで基本的にはうまくいく（一旦これでOK）

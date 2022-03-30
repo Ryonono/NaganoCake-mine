@@ -1,6 +1,25 @@
 Rails.application.routes.draw do
 
 # devise_forを先に書いていたが、これだとcustomersの編集画面の時に先にdeviseの方のviewが表示されてしまう（上から優先順位が高い）ので、devise_forを下に移した
+
+  #基本的に、devise_forはnamespaceの外側に出してしまって大丈夫
+
+  devise_for :admin, controllers: {
+      sessions: 'admin/sessions',
+      # registrations: 'admin/registrations',
+      # passwords: 'admin/passwords'
+    }
+  #adminsになっていたので、自分のフォルダを比べてみて、adminに直した
+
+
+  devise_for :customers, controllers: {
+      sessions: 'public/customers/sessions',
+      #ここにactionとかを設定したらうまくedit画面は飛ばないように設定できるかも
+      registrations: 'public/customers/registrations',
+      passwords: 'public/customers/passwords'
+    }
+    
+    
   namespace :admin do
 
     get "" => "homes#top"
@@ -41,22 +60,5 @@ Rails.application.routes.draw do
     resources :addresses, except: [:new, :show]
   end
 
-
-  #基本的に、devise_forはnamespaceの外側に出してしまって大丈夫
-
-  devise_for :admin, controllers: {
-      sessions: 'admin/sessions',
-      registrations: 'admin/registrations',
-      passwords: 'admin/passwords'
-    }
-  #adminsになっていたので、自分のフォルダを比べてみて、adminに直した
-
-
-  devise_for :customers, controllers: {
-      sessions: 'public/customers/sessions',
-      #ここにactionとかを設定したらうまくedit画面は飛ばないように設定できるかも
-      registrations: 'public/customers/registrations',
-      passwords: 'public/customers/passwords'
-    }
 
 end

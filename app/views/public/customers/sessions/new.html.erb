@@ -3,9 +3,9 @@
 <%= flash[:error] %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :name %><br />
-    姓<%= f.text_field :last_name, autofocus: true, autocomplete: "name" %>
-    名<%= f.text_field :first_name, autofocus: true, autocomplete: "name" %>
+    <%#= f.label :name %><br />
+    姓<%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+    名<%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
   </div>
 
   <div class="field">

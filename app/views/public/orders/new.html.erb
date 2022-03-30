@@ -1,3 +1,55 @@
-<h2>情報入力画面</h2></br>
+<h2>注文情報入力</h2></br>
 
-<div></div>
+<!--現状では、method: :getをしてしまうとurlがおかしくなってしまうので、一旦通常通りのmethod指定なしver.で記述する-->
+<div><%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
+
+  <div>支払方法</div>
+  <div>
+  　<%= f.label :payment_method, "クレジットカード" %>
+    <%= f.radio_button :payment_method, 0 %>
+   
+  </div>
+  <div>
+    <%= f.label :payment_method, "銀行振込" %>
+    <%= f.radio_button :payment_method, 1 %>
+  </div>
+  
+  <div>お届け先</div>
+  <div>
+    <%= f.label :address_option, "ご自身の住所" %>
+    <div>
+      <%= f.radio_button :address_option, 0 %>
+      <span>〒<%= current_customer.post_number %> <%= current_customer.address %></span><br>
+      <%= current_customer.last_name %><%= current_customer.first_name %>
+    </div>
+    </div>
+
+  <div>
+    <%= f.label :address_option, "登録済み住所から選択" %>
+    <%= f.radio_button :address_option, 1 %>
+    <div>
+      <!--options_from_collection_for_select(モデル, :フォームで送る値(メソッド), :セレクトボックスに表示する値(メソッド)) -->
+      <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :full_address) %>
+    </div>
+  </div>
+
+  <div>
+     <%= f.label :address_option, "新しいお届け先" %>
+    <%= f.radio_button :address_option, 2 %>
+   <div>
+     <%= f.label :post_number, "郵便番号（ハイフンなし）" %>
+     <%= f.text_field :post_number %>
+   </div>
+   <div>
+     <%= f.label :address, "住所" %>
+     <%= f.text_field :address %>
+   </div>
+   <div>
+     <%= f.label :name, "宛名" %>
+     <%= f.text_field :name %>
+   </div>
+  </div>
+  <%#= f.hidden_field :address, :value => @order.address_option %>
+  <%= f.submit "確認画面へ進む" %>
+  <% end %>
+</div>

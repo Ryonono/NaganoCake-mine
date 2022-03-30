@@ -6,4 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Admin.create(email: 'a@a', encrypted_password: 'aaaaaa')
+#!をつけると、うまくいかかった時にエラーを吐いてくれる
+
+Admin.create!(email: 'a@a', encrypted_password: 'aaaaaa', password: 'aaaaaa')
+Admin.create!(email: "b@b", encrypted_password: "bbbbbb", password: "bbbbbb")
+Admin.create!(email: "h@h", password: "hhhhhh")

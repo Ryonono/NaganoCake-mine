@@ -57,14 +57,15 @@ class Public::CartItemsController < ApplicationController
     # 合計金額の表示方法がわからない
     def get_total_price
       #@item = Item.find(params[:cart_item][:item_id])
-      @cart_items = CartItem.all
+      @cart_items = current_customer.cart_items.all
+      #まずは初期値を設定する必要性あり
+      total_price = 0
       @cart_items.each do |cart_item|
         subtotal = cart_item.amount * cart_item.item.price
-        for subtotal in @cart_items
-          #total_price = subtotal + subtotal
-        end
+        total_price += subtotal
       end
-      #puts total_price
+        return total_price
+          #total_price = subtotal + subtotal
     end
 
 

@@ -1,5 +1,6 @@
-<h2>Log in</h2>
+<h2>管理者専用ログイン</h2>
 
+<%#= form_with model: @admin, url: admin_session_path, local: true do |f| %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
@@ -8,7 +9,9 @@
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :encrypted_password, autocomplete: "current-password" %>
+    <!--ここの部分がencrypted_passwordでもpasswordでもうまくいかない-->
+    <!--Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)が出る-->
+    <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
   <!--なぜかログインできない-->
